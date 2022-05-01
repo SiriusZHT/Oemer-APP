@@ -1,0 +1,13 @@
+{
+  "name": "oemer-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "ts-node-dev --poll src/index.ts",
+    "test": "jest --watchAll --no-cache"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
