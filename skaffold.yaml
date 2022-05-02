@@ -9,7 +9,7 @@ build:
     push: false
   artifacts:
     - image: heysirius/oemer
-      context: oemer
+      context: oemer-server
       docker:
         dockerfile: Dockerfile
       sync:

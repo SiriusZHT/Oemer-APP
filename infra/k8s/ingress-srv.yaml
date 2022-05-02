@@ -8,7 +8,7 @@ metadata:
     nginx.ingress.kubernetes.io/use-regex: 'true'
 spec:
   rules:
-    - host: localhost:8888
+    - host: localhost
       http:
         paths:
           - path: /api/oemer/?(.*)

@@ -1,0 +1,57 @@
+FROM fnndsc/ubuntu-python3
+# Create app directory
+# RUN mkdir -p /usr/src/oemer-server
+# WORKDIR /usr/src/oemer-server
+
+WORKDIR /app
+
+# Bundle app source
+COPY package.json .
+
+RUN apt-get update
+# RUN apt-get install -y locales
+# RUN apt-get install -y python3
+# RUN apt-get install -y vim
+# # RUN curl -sL https://deb.nodesource.com/setup_17.x | sudo -E bash -
+RUN apt-get install -y nodejs
+RUN apt-get install -y npm 
+# #Upgrading node version to latest stable
+# # RUN sudo npm cache clean -f
+# # RUN npm config set registry https://registry.npmmirror.com/ && sudo npm install -g n
+# # RUN n stable
+
+
+
+
+# ENV LANG C.UTF-8
+# ENV LC_ALL C.UTF-8
+
+#Installing yarn using npm
+RUN npm config set registry https://registry.npmmirror.com/ && npm update 
+RUN npm install --only=prod
+# RUN sudo npm install -g yarnpkg
+# #Upgrading node version to latest stable
+# RUN sudo npm cache clean -f
+RUN apt-get install -y wget
+RUN apt-get install -y curl 
+
+RUN npm install -g n
+RUN n stable
+RUN ln -sf /usr/local/n/versions/node/16.15.0/bin/node /usr/bin/node
+# #Upgrade yarn to latest stable
+RUN npm install -g yarn
+# # Install app dependencies
+RUN yarn install
+
+#Install python dependancies
+# RUN ln -s /usr/local/bin/pip3 /usr/bin/pip3
+# RUN pip3 install -U wheel setuptools pip
+# RUN pip3 install -i https://pypi.tuna.tsinghua.edu.cn/simple oemer
+
+RUN pip3 install -i https://pypi.tuna.tsinghua.edu.cn/simple --upgrade pip
+RUN pip3 install --upgrade setuptools
+RUN pip3 install -i https://pypi.tuna.tsinghua.edu.cn/simple oemer
+# RUN pip-sync api/requirements.txt api/dev-requirements.txt
+
+COPY . .
+CMD ["npm", "start"]

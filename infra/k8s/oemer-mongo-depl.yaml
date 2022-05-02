@@ -1,31 +1,31 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: tickets-mongo-depl
+  name: oemer-mongo-depl
   namespace: ingress-nginx
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: tickets-mongo
+      app: oemer-mongo
   template:
     metadata:
       labels:
-        app: tickets-mongo
+        app: oemer-mongo
     spec:
       containers:
-        - name: tickets-mongo
+        - name: oemer-mongo
           image: mongo
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: tickets-mongo-srv
+  name: oemer-mongo-srv
   namespace: ingress-nginx
 
 spec:
   selector:
-    app: tickets-mongo
+    app: oemer-mongo
   ports:
     - name: db
       protocol: TCP
