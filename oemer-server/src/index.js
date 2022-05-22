@@ -1,6 +1,6 @@
 var exec = require("child_process").exec;
 
-var cmdStr = "oemer './src/pic2.png'";
+var cmdStr = "oemer './src/img/flower-1.png'";
 
 exec(cmdStr, function (err, stdout, stderr) {
   if (err) {
