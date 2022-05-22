@@ -6,9 +6,10 @@ WORKDIR /app
 # RUN pip3 install --upgrade setuptools
 # RUN pip3 install -i https://pypi.tuna.tsinghua.edu.cn/simple oemer
 
+RUN /usr/local/bin/python -m pip install --upgrade pip
 RUN pip3 install -i --upgrade pip
 RUN pip3 install --upgrade setuptools
-RUN pip3 install -i oemer
+RUN pip3 install -i https://pypi.tuna.tsinghua.edu.cn/simple oemer
 
 RUN apt-get update
 RUN apt-get install -y nodejs
@@ -18,8 +19,7 @@ RUN apt-get install -y curl
 
 RUN npm install -g n
 RUN n 17
-RUN npm instal -g nvm
-RUN nvm use 17
+RUN n stable
 # RUN ln -sf /usr/local/n/versions/node/16.15.0/bin/node /usr/bin/node
 
 RUN npm cache clean -f
